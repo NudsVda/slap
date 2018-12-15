@@ -34,26 +34,7 @@ class InventoriesController < ApplicationController
   end
 
   def export_divergent
-    @data = @inventory.items.where(verified: true)
-
-    p = Axlsx::Package.new
-    wb = p.workbook
-    
-    wb.add_worksheet(name: "inventario") do |sheet|
-      sheet.add_row ["DATA DA CHECAGEM", "ORDEM", "COD. BARRAS", "TOMBO", "ED", "DESCRIÇÃO", "RESPONSAVEL ORIGEM", "RESPONSAVEL DESTINO", "SALA ORIGEM", "SALA DESTINO", "VALOR", "ESTADO DE CONSERVAÇÃO", "SITUAÇÃO DE USO"]
-
-      @data.each do |i|
-        
-        if i.sala != i.sala_atual || i.responsavel != i.responsavel_atual
-          #responsavel = i.responsavel
-          #responsavel = i.responsavel_atual unless i.responsavel_atual.nil? || i.responsavel_atual.empty?
-
-          sheet.add_row [i.updated_at, i.ord, i.cbarra, i.tombo, i.ed, i.descricao, i.responsavel, i.responsavel_atual, i.sala, i.sala_atual, i.valor, i.estado_conservacao, i.situacao_uso]
-        end
-      end
-    end
-    
-    send_data p.to_stream.read, type: "application/xlsx", filename: "inventario.xlsx"    
+    @items = @inventory.items.where(verified: true)
   end
 
   def index

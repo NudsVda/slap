@@ -8,7 +8,7 @@
 
     <div class="field">
       <label>Escolha uma sala:</label>
-      <%= f.collection_select :sala, Item.select(:sala).where(inventory_id: params[:id]).uniq.order(sala: :asc), :sala, :sala, {}, {class: '', placeholder: 'Escolha uma sala'} %>
+      <%= f.collection_select :sala, Item.select(:sala).where(inventory_id: params[:id]).uniq.order(sala: :asc), :sala, :sala, {}, {class: 'ui search dropdown', placeholder: 'Escolha uma sala'} %>
     </div>
 
     <div class="field">

@@ -79,7 +79,7 @@
 
         <div class="field">
           <label>Selecione o responsável:</label>
-          <%= f.collection_select :responsavel_atual, Item.select(:responsavel).uniq.order(responsavel: :asc), :responsavel, :responsavel, {include_blank: 'Não Alterar Responsável'}, {class: '', placeholder: 'Selecione o responsável'} %>
+          <%= f.collection_select :responsavel_atual, Item.select(:responsavel).uniq.order(responsavel: :asc), :responsavel, :responsavel, {include_blank: 'Não Alterar Responsável'}, {class: 'ui search dropdown', placeholder: 'Selecione o responsável'} %>
         </div>
 
         <div class="field">
